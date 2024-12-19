@@ -62,9 +62,14 @@ IntelliJ idea should autoconfigure the run. In case this does not happen, you ne
 
 ![img.png](setup/img_7.png)
 
+or like this if you do NOT have the "Spring" option:
+
+![img.png](setup/img_8.png)
+
 ## Versions
 
 | Version | Description                                                                                                                      |
 |---------|----------------------------------------------------------------------------------------------------------------------------------|
+| 0.3.0   | Add register functionality and add jwt token generation                                                                          |
 | 0.2.0   | Bypass Spring security temporarily, setup db config properties, implement basic user db persistence, add project setup in README |
 | 0.1.0   | Add initial Spring Setup                                                                                                         |
