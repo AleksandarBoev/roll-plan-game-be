@@ -68,9 +68,10 @@ or like this if you do NOT have the "Spring" option:
 
 ## Versions
 
-| Version | Description                                                                                                                     |
-|---------|---------------------------------------------------------------------------------------------------------------------------------|
-| 0.4.0   | Add login functionality                                                                            |
-| 0.3.0   | Add register functionality and add jwt token generation                                                                         |
+| Version | Description                                                                                                                      |
+|---------|----------------------------------------------------------------------------------------------------------------------------------|
+| 0.5.0   | Add character creation and fetching all characters for user                                                                      |
+| 0.4.0   | Add login functionality                                                                                                          |
+| 0.3.0   | Add register functionality and add jwt token generation                                                                          |
 | 0.2.0   | Bypass Spring security temporarily, setup db config properties, implement basic user db persistence, add project setup in README |
-| 0.1.0   | Add initial Spring Setup                                                                                                        |
+| 0.1.0   | Add initial Spring Setup                                                                                                         |

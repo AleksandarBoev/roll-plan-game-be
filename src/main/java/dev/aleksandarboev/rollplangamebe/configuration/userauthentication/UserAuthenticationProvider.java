@@ -38,15 +38,18 @@ public class UserAuthenticationProvider {
     }
 
     public Authentication validateToken(String token) {
-        Algorithm algorithm = Algorithm.HMAC256(secretKeyEncoded);
-
-        JWTVerifier verifier = JWT.require(algorithm)
-                .build();
-
-        DecodedJWT decoded = verifier.verify(token);
-
-        UserJwtDto user = new UserJwtDto(decoded.getSubject());
+        UserJwtDto user = new UserJwtDto(getUserId(token));
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+    }
+
+    private String getUserId(String token) {
+        return decodeToken(token).getSubject();
+    }
+
+    private DecodedJWT decodeToken(String token) {
+        Algorithm algorithm = Algorithm.HMAC256(secretKeyEncoded);
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        return verifier.verify(token);
     }
 }
