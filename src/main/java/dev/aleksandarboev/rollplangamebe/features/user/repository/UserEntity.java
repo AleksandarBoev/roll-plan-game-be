@@ -32,4 +32,9 @@ public class UserEntity {
     )
     @Setter(AccessLevel.NONE)
     private List<CharacterEntity> characters = new ArrayList<>();
+
+    public void removeCharacter(CharacterEntity character) {
+        characters.remove(character);
+        character.setUser(null);
+    }
 }

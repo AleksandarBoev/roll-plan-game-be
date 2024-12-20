@@ -29,6 +29,17 @@ public class CharacterController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCharacter(@PathVariable final String id) {
+        boolean deleted = characterService.deleteCharacter(getUserId(), Long.parseLong(id));
+
+        if (deleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     private Long getUserId() {
         UserJwtDto userJwtDto = (UserJwtDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return Long.parseLong(userJwtDto.id());

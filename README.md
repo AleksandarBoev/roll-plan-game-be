@@ -70,6 +70,7 @@ or like this if you do NOT have the "Spring" option:
 
 | Version | Description                                                                                                                      |
 |---------|----------------------------------------------------------------------------------------------------------------------------------|
+| 0.6.0   | Add character deletion                                                                                                           |
 | 0.5.0   | Add character creation and fetching all characters for user                                                                      |
 | 0.4.0   | Add login functionality                                                                                                          |
 | 0.3.0   | Add register functionality and add jwt token generation                                                                          |

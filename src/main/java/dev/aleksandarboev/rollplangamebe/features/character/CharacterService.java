@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +37,22 @@ public class CharacterService {
         characterRepository.save(characterEntity);
 
         return getCharacterCreateResponse(characterEntity);
+    }
+
+    public boolean deleteCharacter(Long userId, Long characterId) {
+        Optional<UserEntity> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            return false;
+        }
+
+        Optional<CharacterEntity> characterEntity = characterRepository.findById(characterId);
+        if (characterEntity.isEmpty()) {
+            return false;
+        }
+
+        user.get().getCharacters().remove(characterEntity.get());
+        userRepository.save(user.get());
+        return true;
     }
 
     private static CharacterEntity getCharacterEntity(CharacterCreateRequest characterCreateRequest, UserEntity user) {
