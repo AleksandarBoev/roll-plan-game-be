@@ -3,6 +3,7 @@ package dev.aleksandarboev.rollplangamebe.features.character.web;
 import dev.aleksandarboev.rollplangamebe.configuration.userauthentication.UserJwtDto;
 import dev.aleksandarboev.rollplangamebe.features.character.CharacterService;
 import dev.aleksandarboev.rollplangamebe.features.character.web.models.CharacterCreateRequest;
+import dev.aleksandarboev.rollplangamebe.features.character.web.models.CharacterEditRequest;
 import dev.aleksandarboev.rollplangamebe.features.character.web.models.CharacterResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,17 @@ public class CharacterController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/edit")
+    public ResponseEntity<Void> editCharacter(@RequestBody final CharacterEditRequest request) {
+        boolean edited = characterService.editCharacter(request);
+        if (edited) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     private Long getUserId() {
         UserJwtDto userJwtDto = (UserJwtDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

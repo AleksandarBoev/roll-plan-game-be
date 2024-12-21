@@ -3,6 +3,7 @@ package dev.aleksandarboev.rollplangamebe.features.character;
 import dev.aleksandarboev.rollplangamebe.features.character.repository.CharacterEntity;
 import dev.aleksandarboev.rollplangamebe.features.character.repository.CharacterRepository;
 import dev.aleksandarboev.rollplangamebe.features.character.web.models.CharacterCreateRequest;
+import dev.aleksandarboev.rollplangamebe.features.character.web.models.CharacterEditRequest;
 import dev.aleksandarboev.rollplangamebe.features.character.web.models.CharacterResponse;
 import dev.aleksandarboev.rollplangamebe.features.user.repository.UserEntity;
 import dev.aleksandarboev.rollplangamebe.features.user.repository.UserRepository;
@@ -50,8 +51,19 @@ public class CharacterService {
             return false;
         }
 
-        user.get().getCharacters().remove(characterEntity.get());
+        user.get().removeCharacter(characterEntity.get());
         userRepository.save(user.get());
+        return true;
+    }
+
+    public boolean editCharacter(CharacterEditRequest characterEditRequest) {
+        Optional<CharacterEntity> characterEntity = characterRepository.findById(characterEditRequest.id());
+        if (characterEntity.isEmpty()) {
+            return false;
+        }
+
+        editCharacterEntity(characterEntity.get(), characterEditRequest);
+        characterRepository.save(characterEntity.get());
         return true;
     }
 
@@ -83,5 +95,17 @@ public class CharacterService {
                 .wisdom(characterEntity.getWisdom())
                 .charisma(characterEntity.getCharisma())
                 .build();
+    }
+
+    private void editCharacterEntity(CharacterEntity characterEntity, CharacterEditRequest characterEditRequest) {
+        characterEntity.setName(characterEditRequest.name());
+        characterEntity.setGender(characterEditRequest.gender());
+        characterEntity.setRace(characterEditRequest.race());
+        characterEntity.setStrength(characterEditRequest.strength());
+        characterEntity.setDexterity(characterEditRequest.dexterity());
+        characterEntity.setConstitution(characterEditRequest.constitution());
+        characterEntity.setIntelligence(characterEditRequest.intelligence());
+        characterEntity.setWisdom(characterEditRequest.wisdom());
+        characterEntity.setCharisma(characterEditRequest.charisma());
     }
 }
