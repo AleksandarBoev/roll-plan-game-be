@@ -70,6 +70,7 @@ or like this if you do NOT have the "Spring" option:
 
 | Version | Description                                                                                                                      |
 |---------|----------------------------------------------------------------------------------------------------------------------------------|
+| 0.7.1   | Quick fix for characters visualization                                                                                           |
 | 0.7.0   | Add character editing                                                                                                            |
 | 0.6.0   | Add character deletion                                                                                                           |
 | 0.5.0   | Add character creation and fetching all characters for user                                                                      |

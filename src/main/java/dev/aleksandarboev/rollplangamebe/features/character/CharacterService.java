@@ -20,7 +20,7 @@ public class CharacterService {
     private final UserRepository userRepository;
 
     public List<CharacterResponse> getCharacters(Long userId) {
-        Optional<UserEntity> userEntityWithCharacters = userRepository.findByIdAndFetchAllCharacters(userId);
+        Optional<UserEntity> userEntityWithCharacters = userRepository.findById(userId);
         if (userEntityWithCharacters.isPresent()) {
             return userEntityWithCharacters.get().getCharacters()
                     .stream()
